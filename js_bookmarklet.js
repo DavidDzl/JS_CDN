@@ -10,7 +10,6 @@ function get_data_from_api(zone, plot) {
     url: 'http://mapa.um.warszawa.pl/mapaApp1/wyszukaj?funkcja=wyszukajByNrObrebuNrDzialki&nrObrebu=' + zone + '&nrDzialki=' + plot, 
     dataType: 'xml',
     success: function (data) { 
-     console.log('done')
      $(data).find('obiekt').each(function(){
          if (find_flag == 0) {
                  $(this).find("id").each(function(){
@@ -20,10 +19,8 @@ function get_data_from_api(zone, plot) {
                         var name = $(this).text();
                         var name_splitted = name.split(" ")
                         var plot_number = name_splitted[name_splitted.length-1]
-                        console.log(name)
                         if (plot_number == plot) {
                          find_flag = 1
-                         console.log(current_id)
                             
                         }
                         ;})
@@ -33,7 +30,6 @@ function get_data_from_api(zone, plot) {
             }
         });
         if (find_flag == 1) {
-         console.log(current_id)
          var prefix = 'DZIALKI'
          window.pokazNaMapie(prefix, current_id)
         }
@@ -42,9 +38,9 @@ function get_data_from_api(zone, plot) {
 });
 }
 
+
 function fetch_data_from_url (url) {
   if (check_url_vaild(url)) {
- console.log("in fetch data func")
  var fetch_data = url.split("&param_zone_plot=")[1]
  var fetch_data_splitted = fetch_data.split("-")
  var zone_nb = fetch_data_splitted[0]
@@ -55,8 +51,7 @@ function fetch_data_from_url (url) {
  else {
      var plot_nb = fetch_data_splitted[1]
  }
- console.log(zone_nb)
- console.log(plot_nb)
+
  get_data_from_api(zone_nb, plot_nb)
  add_clearing_button()
   }
@@ -68,14 +63,18 @@ function fetch_data_from_url (url) {
 function check_url_vaild(http_address) {
   var regex = /param_zone_plot=/g
   var stateRegex = regex.test(http_address)
-  console.log(stateRegex)
   return stateRegex
 }
 
 function add_clearing_button() {
+  if (document.querySelector('.clearButton') == null) {
     var div_toolbar = document.getElementById("toolbar");
-    var str = '<a id="search_clear" title="usunięcie symbolu znalezionego obiektu z mapy" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">usuń zaznaczenie</a>';
+    var str = '<a id="search_clear" class="clearButton" title="usunięcie symbolu znalezionego obiektu z mapy" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">usuń zaznaczenie</a>';
     div_toolbar.insertAdjacentHTML('beforeend', str );
+  }
+  else {
+    return
+  }
 }
 
 fetch_data_from_url(window_url)
