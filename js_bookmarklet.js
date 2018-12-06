@@ -44,7 +44,7 @@ function get_data_from_api(zone, plot) {
 
 
 function fetch_data_from_url (url) {
-  if check_url_vaild(url) {
+  if (check_url_vaild(url)) {
  console.log("in fetch data func")
  var fetch_data = url.split("&param_zone_plot=")[1]
  var fetch_data_splitted = fetch_data.split("-")
