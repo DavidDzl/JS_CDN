@@ -69,7 +69,7 @@ function check_url_vaild(http_address) {
 function add_clearing_button() {
   if (document.querySelector('.clearButton') == null) {
     var div_toolbar = document.getElementById("toolbar");
-    var str = '<a id="search_clear" class="clearButton" title="clears the map selection" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">clear selection</a>';
+    var str = '<a id="search_clear" class="clearButton" title="clear the map selection" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">clear selection</a>';
     div_toolbar.insertAdjacentHTML('beforeend', str );
   }
   else {
