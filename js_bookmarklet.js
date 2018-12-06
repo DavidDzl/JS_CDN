@@ -42,7 +42,6 @@ function get_data_from_api(zone, plot) {
 });
 }
 
-
 function fetch_data_from_url (url) {
   if (check_url_vaild(url)) {
  console.log("in fetch data func")
@@ -59,6 +58,7 @@ function fetch_data_from_url (url) {
  console.log(zone_nb)
  console.log(plot_nb)
  get_data_from_api(zone_nb, plot_nb)
+ add_clearing_button()
   }
   else {
     alert("Niewłaściwy adres URL")
@@ -70,6 +70,12 @@ function check_url_vaild(http_address) {
   var stateRegex = regex.test(http_address)
   console.log(stateRegex)
   return stateRegex
+}
+
+function add_clearing_button() {
+    var div_toolbar = document.getElementById("toolbar");
+    var str = '<a id="search_clear" title="usunięcie symbolu znalezionego obiektu z mapy" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">usuń zaznaczenie</a>';
+    div_toolbar.insertAdjacentHTML('beforeend', str );
 }
 
 fetch_data_from_url(window_url)
