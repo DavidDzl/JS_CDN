@@ -56,7 +56,7 @@ function fetch_data_from_url (url) {
  add_clearing_button()
   }
   else {
-    alert("Niewłaściwy adres URL")
+    alert("Requested URL is invalid")
   }
 }
 
@@ -69,7 +69,7 @@ function check_url_vaild(http_address) {
 function add_clearing_button() {
   if (document.querySelector('.clearButton') == null) {
     var div_toolbar = document.getElementById("toolbar");
-    var str = '<a id="search_clear" class="clearButton" title="usunięcie symbolu znalezionego obiektu z mapy" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">usuń zaznaczenie</a>';
+    var str = '<a id="search_clear" class="clearButton" title="clears the map selection" onclick="toolbarButtonOnClick(this)" style="background-color: rgba(46, 127, 227, 1);color: white;border-color: #5f5f5f;margin-left: 10px;cursor: pointer;">clear selection</a>';
     div_toolbar.insertAdjacentHTML('beforeend', str );
   }
   else {
