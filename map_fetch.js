@@ -64,13 +64,37 @@ function set_wanted_layers(genre) {
         }
     }
     else if (genre == 'landuse') {
-        var ids_list = ['lay5', 'lay13', 'lay15', 'prawy_panel_toggle_img']
+        var ids_list = ['lay5', 'lay7', 'lay13', 'lay15', 'prawy_panel_toggle_img']
         for (var i=0; i<ids_list.length; i++) {
             document.getElementById(ids_list[i]).click();
         }
     }
     else if (genre == 'studium') {
         var ids_list = ['lay39', 'lay40', 'lay71', 'prawy_panel_toggle_img']
+        for (var i=0; i<ids_list.length; i++) {
+            document.getElementById(ids_list[i]).click();
+        }
+    }
+    else if (genre == 'wz') {
+        var ids_list = ['lay0', 'lay5', 'lay9', 'lay55', 'prawy_panel_toggle_img']
+        for (var i=0; i<ids_list.length; i++) {
+            document.getElementById(ids_list[i]).click();
+        }
+    }
+    else if (genre == 'pnb') {
+        var ids_list = ['lay0', 'lay5', 'lay9', 'lay60', 'prawy_panel_toggle_img']
+        for (var i=0; i<ids_list.length; i++) {
+            document.getElementById(ids_list[i]).click();
+        }
+    }
+    else if (genre == 'ldwn') {
+        var ids_list = ['lay80', 'lay77', 'lay7', 'prawy_panel_toggle_img']
+        for (var i=0; i<ids_list.length; i++) {
+            document.getElementById(ids_list[i]).click();
+        }
+    }
+    else if (genre == 'ln') {
+        var ids_list = ['lay80', 'lay77', 'lay8', 'prawy_panel_toggle_img']
         for (var i=0; i<ids_list.length; i++) {
             document.getElementById(ids_list[i]).click();
         }
@@ -115,6 +139,18 @@ function add_layout_button() {
     return
   }
 }
+
+function add_layer_name() {
+  if (document.querySelector('.layer_name') == null) {
+    var div_toolbar = document.getElementById("logo_um");
+    var str = '<a id="layer_n" class="layer_name" style="font-weight: bold; border-color: #5f5f5f;margin-left: 10px;padding: 2px">' + layer_to_export + '</a>';
+    div_toolbar.insertAdjacentHTML('beforeend', str );
+  }
+  else {
+    return
+  }
+}
+
 
 function add_script_link() {
   var script = document.createElement("script");
@@ -184,14 +220,18 @@ mapview.zoomToRectangle(mbr_geom)
 
 
 turn_off_upper_headers()
-add_download_button()
-add_layout_button()
 
-document.getElementById("download_img").addEventListener("click", function() {
-    html2canvas(document.querySelector('#map')).then(function(canvas) {
-        saveAs(canvas.toDataURL(), layer_to_export + '.png');
-    });
-});
+// add_download_button()
+add_layout_button()
+add_layer_name()
+
+
+
+// document.getElementById("download_img").addEventListener("click", function() {
+//     html2canvas(document.querySelector('#map')).then(function(canvas) {
+//         saveAs(canvas.toDataURL(), layer_to_export + '.png');
+//     });
+// });
 
 document.getElementById("clear_layout").addEventListener("click", function() {
   turn_off_layout()
@@ -200,21 +240,5 @@ document.getElementById("clear_layout").addEventListener("click", function() {
 add_script_link()
 
 } else {
-// var reqe = mapview.getMapAsXML("PNG")
-// console.log(reqe)
-// var baselink = 'http://mapa.um.warszawa.pl/mapviewer/omserver?xml_request='
-// var fulllink = baselink+reqe
-// var fulllink_converted = fulllink.replace(/\s/g,"%20")
-
-// $.ajax({ 
-//     type: 'GET', 
-//     url: fulllink_converted, 
-//     dataType: 'xml',
-//     success: function (data) {
-//       console.log($(data).find('map_content').attr("url"));
-//       window.open($(data).find('map_content').attr("url"));
-//     }
-//     })
-
   console.log("Exists")
 }
